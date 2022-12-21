@@ -15,13 +15,17 @@ const getPosts = () => {
     }, 1000);
 }
 
-
-const createPost = (post) => {
+/* adding a callback function so that it is directly called right after
+    the code is executed in the below function and hence the timeout
+    won't affect the calling of the getPosts function.......
+    We write the callback function as a paramter of the other function....
+*/
+const createPost = (post, callback) => {
     setTimeout(() => {
         posts.push(post);
+        callback();
     }, 2000);
 }
 
-getPosts();
 
-createPost({ title: 'Post Three', body : 'This is post three'});
+createPost({ title: 'Post Three', body : 'This is post three'}, getPosts);
