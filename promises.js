@@ -32,9 +32,33 @@ const createPost = (post) => {
 }
 
 
-createPost({ title: 'Post Three', body : 'This is post three'}).then(getPosts).catch(err => console.log(err));
+// createPost({ title: 'Post Three', body : 'This is post three'}).then(getPosts).catch(err => console.log(err));
 
-// Promise.all
+// Async / Await
+
+async function init() {
+    await createPost({ title: 'Post Three', body : 'This is post three'});
+
+    getPosts();
+}
+
+
+init();
+
+
+// Async / Await with fecth api......
+
+async function fetchUsers(){
+    const response = await fetch('https://jsonplaceholder.typicode.com/users');
+
+    const data = await response.json();
+
+    console.log(data);
+}
+
+fetchUsers();
+
+// Promise.all - This will execute all the promises as an array......
 
 const promise1 = Promise.resolve('Hello World');
 const promise2 = 10;
